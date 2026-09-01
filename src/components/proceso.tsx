@@ -1,3 +1,7 @@
+"use client";
+
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+
 const proceso = [
   {
     num: "01",
@@ -35,7 +39,7 @@ export default function Proceso() {
   return (
     <section id="proceso" className="section-xl" style={{ borderBottom: "1px solid var(--color-border)" }}>
       <div className="proceso-grid" style={{ display: "grid" }}>
-        <div>
+        <Reveal>
           <div className="eyebrow" style={{ marginBottom: 26 }}>03 · Proceso</div>
           <h2
             className="heading-40"
@@ -52,21 +56,21 @@ export default function Proceso() {
           <p style={{ fontSize: 14, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: 0, maxWidth: 300 }}>
             Cada etapa cierra con algo revisable: un documento, un prototipo o un entorno funcionando.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="proceso-steps" style={{ display: "grid", gap: 24, alignItems: "start" }}>
+        <RevealGroup className="proceso-steps" style={{ display: "grid", gap: 24, alignItems: "start" }}>
           {proceso.map((p) => (
-            <div key={p.num} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <RevealItem key={p.num} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.icon} alt="" style={{ width: 56, height: 56 }} />
+              <img src={p.icon} alt="" className="service-icon" style={{ width: 56, height: 56 }} />
               <div style={{ fontFamily: "var(--font-serif)", fontSize: 22, fontWeight: 300, color: "var(--color-fg-faint)" }}>
                 {p.num}
               </div>
               <div style={{ fontFamily: "var(--font-serif)", fontSize: 20 }}>{p.title}</div>
               <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--color-fg-muted)", margin: 0 }}>{p.body}</p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

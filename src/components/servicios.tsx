@@ -1,3 +1,7 @@
+"use client";
+
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+
 const servicios = [
   {
     num: "01",
@@ -41,7 +45,7 @@ export default function Servicios() {
   return (
     <section id="servicios" className="section-xl" style={{ borderBottom: "1px solid var(--color-border)" }}>
       <div className="servicios-intro" style={{ display: "grid", alignItems: "end", marginBottom: 72 }}>
-        <div>
+        <Reveal>
           <div className="eyebrow" style={{ marginBottom: 26 }}>01 · Servicios</div>
           <h2
             className="heading-46"
@@ -57,15 +61,17 @@ export default function Servicios() {
             Diseño, implementación y <em style={{ color: "var(--color-accent)" }}>sistemas</em> para
             productos digitales.
           </h2>
-        </div>
-        <p style={{ fontSize: 14.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: 0 }}>
-          Trabajamos de punta a punta o nos integramos a tu equipo en la etapa donde más falta hace.
-        </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p style={{ fontSize: 14.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: 0 }}>
+            Trabajamos de punta a punta o nos integramos a tu equipo en la etapa donde más falta hace.
+          </p>
+        </Reveal>
       </div>
 
-      <div className="servicios-grid" style={{ display: "grid", borderTop: "1px solid var(--color-border-strong)" }}>
+      <RevealGroup className="servicios-grid" style={{ display: "grid", borderTop: "1px solid var(--color-border-strong)" }}>
         {servicios.map((s) => (
-          <div
+          <RevealItem
             key={s.num}
             className="service-card"
             style={{
@@ -80,7 +86,7 @@ export default function Servicios() {
                 {s.num}
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={s.icon} alt="" style={{ width: 64, height: 64, opacity: 0.9 }} />
+              <img src={s.icon} alt="" className="service-icon" style={{ width: 64, height: 64, opacity: 0.9 }} />
             </div>
             <h3 style={{ fontFamily: "var(--font-serif)", fontWeight: 400, fontSize: 23, margin: 0, letterSpacing: "-0.01em" }}>
               {s.title}
@@ -88,9 +94,9 @@ export default function Servicios() {
             <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-fg-muted)", margin: 0, maxWidth: 290 }}>
               {s.body}
             </p>
-          </div>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
     </section>
   );
 }

@@ -1,6 +1,9 @@
+"use client";
+
+import { Reveal } from "@/components/motion/reveal";
+
 const contacto = [
-  { label: "Teléfono", value: "+54 11 6116 8427" },
-  { label: "WhatsApp", value: "+54 9 11 6116 8427" },
+  { label: "Teléfono", value: "+54 3446 584076\n+54 3446 641246" },
   { label: "Ubicación", value: "Buenos Aires, Argentina" },
 ];
 
@@ -8,7 +11,7 @@ export default function Contacto() {
   return (
     <section id="contacto" className="section-xl" style={{ background: "var(--color-accent)", color: "var(--color-accent-fg)" }}>
       <div className="contacto-grid" style={{ display: "grid", alignItems: "end" }}>
-        <div>
+        <Reveal>
           <div style={{ fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.7, marginBottom: 30 }}>
             05 · Hablemos
           </div>
@@ -47,17 +50,17 @@ export default function Contacto() {
               <path d="M0 6h27M23 1l5 5-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-        </div>
-        <div style={{ display: "grid", gap: 28 }}>
+        </Reveal>
+        <Reveal delay={0.1} style={{ display: "grid", gap: 28 }}>
           {contacto.map((c) => (
             <div key={c.label}>
               <div style={{ fontSize: 10.5, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.65, marginBottom: 10 }}>
                 {c.label}
               </div>
-              <div style={{ fontSize: 16 }}>{c.value}</div>
+              <div style={{ fontSize: 16, whiteSpace: "pre-line" }}>{c.value}</div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

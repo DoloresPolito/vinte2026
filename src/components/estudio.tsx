@@ -1,7 +1,16 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import { Reveal } from "@/components/motion/reveal";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function Estudio() {
+  const reduced = useReducedMotion();
+
   return (
     <section id="estudio" className="estudio-section" style={{ display: "grid", borderBottom: "1px solid var(--color-border)" }}>
-      <div className="section-lg" style={{ background: "var(--color-bg-alt)" }}>
+      <Reveal className="section-lg" style={{ background: "var(--color-bg-alt)" }}>
         <div className="eyebrow" style={{ marginBottom: 26 }}>04 · El estudio</div>
         <h2
           className="heading-40"
@@ -25,30 +34,27 @@ export default function Estudio() {
         </p>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 28,
             maxWidth: 460,
             borderTop: "1px solid var(--color-border-strong)",
             paddingTop: 28,
           }}
         >
-          <div>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>Cómo trabajamos</div>
-            <div style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-fg-subtle)" }}>
-              Por proyecto cerrado o retainer mensual.
-            </div>
-          </div>
-          <div>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>Stack</div>
-            <div style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-fg-subtle)" }}>
-              Next.js, React, Webflow, headless CMS.
-            </div>
+          <div className="eyebrow" style={{ marginBottom: 10 }}>Cómo trabajamos</div>
+          <div style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-fg-subtle)" }}>
+            Por proyecto cerrado o retainer mensual.
           </div>
         </div>
-      </div>
-      <div className="estudio-image" style={{ position: "relative", minHeight: 520, background: "var(--color-bg-card)" }}>
-        <div className="image-placeholder">Foto del estudio o del equipo</div>
+      </Reveal>
+      <div className="estudio-image" style={{ position: "relative", minHeight: 520, background: "var(--color-bg-card)", overflow: "hidden" }}>
+        <motion.div
+          className="image-placeholder"
+          initial={reduced ? undefined : { scale: 1.1, opacity: 0 }}
+          whileInView={reduced ? undefined : { scale: 1, opacity: 1 }}
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          transition={reduced ? undefined : { duration: 1, ease: EASE }}
+        >
+          Foto del estudio o del equipo
+        </motion.div>
       </div>
     </section>
   );

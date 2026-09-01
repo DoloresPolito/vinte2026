@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, Jost } from "next/font/google";
+import SmoothScroll from "@/components/motion/smooth-scroll";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -23,7 +24,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${newsreader.variable} ${jost.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
