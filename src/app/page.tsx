@@ -16,9 +16,9 @@ export default function Home() {
       <Hero />
       <Servicios />
       <Proyectos />
-      <Filosofia />
-      <Clientes />
       <Proceso />
+      <Clientes />
+      <Filosofia />
       <Estudio />
       <Contacto />
       <Footer />

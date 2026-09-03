@@ -23,6 +23,11 @@ export default function Hero() {
       style={{
         display: "grid",
         borderBottom: "1px solid var(--color-border)",
+        backgroundImage:
+          "linear-gradient(105deg, rgba(245,243,237,0.96) 0%, rgba(245,243,237,0.8) 32%, rgba(245,243,237,0.35) 55%, rgba(245,243,237,0) 74%), url(/icons/hero.png)",
+        backgroundSize: "100% 100%, cover",
+        backgroundPosition: "left, center",
+        backgroundRepeat: "no-repeat, no-repeat",
       }}
     >
       <motion.div
@@ -94,16 +99,6 @@ export default function Hero() {
           <span style={{ paddingBottom: 4 }}>Scroll</span>
         </motion.div>
       </motion.div>
-      <div className="hero-image" style={{ position: "relative", background: "var(--color-bg-alt)", overflow: "hidden" }}>
-        <motion.div
-          className="image-placeholder"
-          initial={reduced ? undefined : { scale: 1.08, opacity: 0 }}
-          animate={reduced ? undefined : { scale: 1, opacity: 1 }}
-          transition={reduced ? undefined : { duration: 1.1, ease: EASE }}
-        >
-          Imagen de portada — atmosférica, luz cálida
-        </motion.div>
-      </div>
     </section>
   );
 }
