@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import Ticker from "@/components/ticker";
 import Hero from "@/components/hero";
 import Servicios from "@/components/servicios";
 import Proyectos from "@/components/proyectos";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <Ticker />
       <Hero />
       <Servicios />
       <Proyectos />

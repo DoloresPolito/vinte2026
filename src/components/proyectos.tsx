@@ -98,7 +98,7 @@ export default function Proyectos() {
                 <div className="proyecto-sector">{p.sector}</div>
                 <h3 className="proyecto-item-title">{p.title}</h3>
                 <p className="proyecto-item-desc">{p.description}</p>
-                <a href="#" className="proyecto-link">
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="proyecto-link">
                   {t.proyectos.ctaLabel}
                   <svg width="18" height="9" viewBox="0 0 18 9" fill="none">
                     <path d="M0 4.5h16M12 0.5l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />

@@ -26,6 +26,15 @@ const es = {
     scroll: "Scroll",
   },
 
+  ticker: {
+    items: [
+      "Tomando proyectos 2026",
+      "Diseño e implementación web",
+      "Buenos Aires, Argentina",
+      "Respondemos en 48h",
+    ],
+  },
+
   servicios: {
     eyebrow: "01 · Servicios",
     titlePre: "Diseño, implementación y ",
@@ -86,6 +95,7 @@ const es = {
         sector: "Domótica",
         title: "Annika",
         description: "Tecnología que se integra a tu forma de vivir.",
+        url: "https://www.annikagroup.com/",
       },
       {
         slug: "alejandro-polito",
@@ -93,13 +103,15 @@ const es = {
         sector: "Salud",
         title: "Alejandro Polito",
         description: "Cirugía plástica y reconstructiva con un enfoque personalizado.",
+        url: "https://www.alejandropolito.com.ar/",
       },
       {
-        slug: "coenergy",
+        slug: "cerer",
         category: "web",
         sector: "Energía",
-        title: "Coenergy",
-        description: "Soluciones de energía solar para el campo, empresas y hogares.",
+        title: "CERER",
+        description: "Cámara de Energías Renovables de Entre Ríos.",
+        url: "https://cerer.ar",
       },
     ],
   },
@@ -228,6 +240,15 @@ const en = {
     scroll: "Scroll",
   },
 
+  ticker: {
+    items: [
+      "Taking on projects 2026",
+      "Web design & implementation",
+      "Buenos Aires, Argentina",
+      "We reply within 48h",
+    ],
+  },
+
   servicios: {
     eyebrow: "01 · Services",
     titlePre: "Design, implementation and ",
@@ -288,6 +309,7 @@ const en = {
         sector: "Home automation",
         title: "Annika",
         description: "Technology that fits the way you live.",
+        url: "https://www.annikagroup.com/",
       },
       {
         slug: "alejandro-polito",
@@ -295,13 +317,15 @@ const en = {
         sector: "Health",
         title: "Alejandro Polito",
         description: "Plastic and reconstructive surgery with a personalized approach.",
+        url: "https://www.alejandropolito.com.ar/",
       },
       {
-        slug: "coenergy",
+        slug: "cerer",
         category: "web",
         sector: "Energy",
-        title: "Coenergy",
-        description: "Solar energy solutions for farms, businesses and homes.",
+        title: "CERER",
+        description: "Entre Ríos Renewable Energy Chamber.",
+        url: "https://cerer.ar",
       },
     ],
   },
