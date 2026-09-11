@@ -4,13 +4,9 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useLenis } from "lenis/react";
-
-const navLinks = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#proyectos", label: "Proyectos" },
-  { href: "#proceso", label: "Proceso" },
-  { href: "#estudio", label: "Estudio" },
-];
+import { Magnetic } from "@/components/motion/magnetic";
+import { useLanguage } from "@/lib/i18n/language-context";
+import type { Locale } from "@/lib/i18n/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const SMOOTH_EASE = [0.65, 0, 0.35, 1] as const;
@@ -40,6 +36,14 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const mounted = useMounted();
   const lenis = useLenis();
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { href: "#servicios", label: t.header.nav.servicios },
+    { href: "#proyectos", label: t.header.nav.proyectos },
+    { href: "#proceso", label: t.header.nav.proceso },
+    { href: "#estudio", label: t.header.nav.estudio },
+  ];
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 760);
@@ -83,23 +87,28 @@ export default function Header() {
 
         <nav className="site-nav" style={{ fontSize: 11.5, letterSpacing: "0.18em", textTransform: "uppercase" }}>
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
-              {link.label}
-            </a>
+            <Magnetic key={link.href} strength={0.4}>
+              <a href={link.href} className="nav-link">
+                {link.label}
+              </a>
+            </Magnetic>
           ))}
         </nav>
 
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <a href="#contacto" className="btn btn-invert btn-sm">
-            Hablemos
-            <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
-              <path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+          <LanguageToggle lang={lang} setLang={setLang} className="lang-toggle-desktop" />
+          <Magnetic>
+            <a href="#contacto" className="btn btn-invert btn-sm">
+              {t.header.cta}
+              <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
+                <path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </Magnetic>
           <button
             type="button"
             className="menu-toggle"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={menuOpen ? t.header.menuClose : t.header.menuOpen}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
           >
@@ -134,6 +143,9 @@ export default function Header() {
                       {link.label}
                     </motion.a>
                   ))}
+                  <motion.div variants={linkItem} style={{ marginTop: 18 }}>
+                    <LanguageToggle lang={lang} setLang={setLang} className="lang-toggle-mobile" />
+                  </motion.div>
                 </motion.nav>
               </motion.div>
             )}
@@ -141,5 +153,37 @@ export default function Header() {
           document.body
         )}
     </motion.header>
+  );
+}
+
+function LanguageToggle({
+  lang,
+  setLang,
+  className,
+}: {
+  lang: Locale;
+  setLang: (lang: Locale) => void;
+  className?: string;
+}) {
+  return (
+    <div className={`lang-toggle ${className ?? ""}`} role="group" aria-label="Idioma / Language">
+      <button
+        type="button"
+        className={lang === "es" ? "lang-toggle-option is-active" : "lang-toggle-option"}
+        aria-pressed={lang === "es"}
+        onClick={() => setLang("es")}
+      >
+        ES
+      </button>
+      <span className="lang-toggle-sep">/</span>
+      <button
+        type="button"
+        className={lang === "en" ? "lang-toggle-option is-active" : "lang-toggle-option"}
+        aria-pressed={lang === "en"}
+        onClick={() => setLang("en")}
+      >
+        EN
+      </button>
+    </div>
   );
 }

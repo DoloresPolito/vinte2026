@@ -1,19 +1,16 @@
 "use client";
 
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
-
-const filosofia = [
-  "No perseguimos tendencias. Resolvemos el problema del negocio con la interfaz más simple que lo soporte.",
-  "Diseño e implementación son la misma conversación. Nada se define sin saber cómo se va a construir.",
-  "Entregamos un proyecto que otro equipo puede leer, mantener y extender sin nosotros.",
-];
+import { useLanguage } from "@/lib/i18n/language-context";
 
 export default function Filosofia() {
+  const { t } = useLanguage();
+
   return (
     <section className="section-lg" style={{ background: "var(--color-bg-alt)", borderBottom: "1px solid var(--color-border)" }}>
       <RevealGroup className="filosofia-grid" style={{ display: "grid" }}>
         <RevealItem>
-          <div className="eyebrow" style={{ marginBottom: 24 }}>Cómo pensamos</div>
+          <div className="eyebrow" style={{ marginBottom: 24 }}>{t.filosofia.eyebrow}</div>
           <h2
             className="heading-38"
             style={{
@@ -24,10 +21,12 @@ export default function Filosofia() {
               letterSpacing: "-0.015em",
             }}
           >
-            Una web se juzga <em style={{ color: "var(--color-accent)" }}>cuando anda</em>.
+            {t.filosofia.titlePre}
+            <em style={{ color: "var(--color-accent)" }}>{t.filosofia.titleEm}</em>
+            {t.filosofia.titlePost}
           </h2>
         </RevealItem>
-        {filosofia.map((f) => (
+        {t.filosofia.items.map((f) => (
           <RevealItem key={f} style={{ paddingTop: 6 }}>
             <p style={{ fontSize: 14.5, lineHeight: 1.8, color: "var(--color-fg-subtle)", margin: 0 }}>{f}</p>
           </RevealItem>

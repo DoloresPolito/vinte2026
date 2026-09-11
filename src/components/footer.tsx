@@ -1,4 +1,10 @@
+"use client";
+
+import { useLanguage } from "@/lib/i18n/language-context";
+
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer
       className="site-footer"
@@ -19,7 +25,7 @@ export default function Footer() {
         <span style={{ fontWeight: 500, color: "var(--color-bg)" }}>VINTE</span>
         <span style={{ fontWeight: 300 }}>STUDIO</span>
       </div>
-      <div>© 2026 · Buenos Aires, Argentina</div>
+      <div>{t.footer.copy}</div>
     </footer>
   );
 }

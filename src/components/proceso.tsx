@@ -1,57 +1,34 @@
 "use client";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { ParallaxImage } from "@/components/motion/parallax";
+import { useLanguage } from "@/lib/i18n/language-context";
 
-const proceso = [
-  {
-    num: "01",
-    title: "Escuchar",
-    body: "Entendemos el negocio, los usuarios y las restricciones técnicas.",
-    icon: "/icons/process/01-escuchar.svg",
-  },
-  {
-    num: "02",
-    title: "Definir",
-    body: "Alcance, prioridades y criterios de éxito por escrito.",
-    icon: "/icons/process/02-definir.svg",
-  },
-  {
-    num: "03",
-    title: "Prototipar",
-    body: "Diseño navegable para validar antes de escribir código.",
-    icon: "/icons/process/03-prototipar.svg",
-  },
-  {
-    num: "04",
-    title: "Construir",
-    body: "Implementación por etapas, con entornos de prueba visibles.",
-    icon: "/icons/process/04-construir.svg",
-  },
-  {
-    num: "05",
-    title: "Iterar",
-    body: "Lanzamos, medimos y ajustamos con datos de uso real.",
-    icon: "/icons/process/05-iterar.svg",
-  },
+const icons = [
+  "/icons/process/01-escuchar.svg",
+  "/icons/process/02-definir.svg",
+  "/icons/process/03-prototipar.svg",
+  "/icons/process/04-construir.svg",
+  "/icons/process/05-iterar.svg",
 ];
 
 export default function Proceso() {
+  const { t } = useLanguage();
+  const proceso = t.proceso.steps.map((p, i) => ({ ...p, icon: icons[i] }));
+
   return (
     <section
       id="proceso"
       className="proceso-section"
-      style={{
-        borderBottom: "1px solid var(--color-border)",
-        backgroundImage:
-          "linear-gradient(100deg, rgba(245,243,237,0.95) 0%, rgba(245,243,237,0.86) 30%, rgba(245,243,237,0.5) 55%, rgba(245,243,237,0.18) 75%, rgba(245,243,237,0.05) 100%), url(/icons/process.png)",
-        backgroundSize: "cover, cover",
-        backgroundPosition: "center, center",
-        backgroundRepeat: "no-repeat, no-repeat",
-      }}
+      style={{ borderBottom: "1px solid var(--color-border)" }}
     >
-      <div className="proceso-grid" style={{ display: "grid" }}>
+      <ParallaxImage
+        src="/icons/process.png"
+        gradient="linear-gradient(100deg, rgba(245,243,237,0.95) 0%, rgba(245,243,237,0.86) 30%, rgba(245,243,237,0.5) 55%, rgba(245,243,237,0.18) 75%, rgba(245,243,237,0.05) 100%)"
+      />
+      <div className="proceso-grid" style={{ position: "relative", zIndex: 1, display: "grid" }}>
         <Reveal>
-          <div className="eyebrow" style={{ marginBottom: 22 }}>03 · Proceso</div>
+          <div className="eyebrow" style={{ marginBottom: 22 }}>{t.proceso.eyebrow}</div>
           <h2
             className="heading-40"
             style={{
@@ -62,19 +39,20 @@ export default function Proceso() {
               letterSpacing: "-0.015em",
             }}
           >
-            De una idea<br />
-            a algo <em style={{ color: "var(--color-accent)" }}>que funciona.</em>
+            {t.proceso.titleLine1}<br />
+            {t.proceso.titleLine2Pre}
+            <em style={{ color: "var(--color-accent)" }}>{t.proceso.titleLine2Em}</em>
           </h2>
           <div style={{ width: 40, height: 1, background: "var(--color-border-heavy)", marginBottom: 18 }} />
           <p style={{ fontSize: 13.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: 0, maxWidth: 280 }}>
-            Un proceso claro para transformar ideas en productos digitales que resuelven y evolucionan.
+            {t.proceso.intro}
           </p>
         </Reveal>
 
-        <div>
-          <div className="proceso-icons-row">
-            {proceso.map((p, i) => (
-              <div key={p.num} className="proceso-icon-cell">
+        <RevealGroup className="proceso-steps" style={{ display: "grid" }}>
+          {proceso.map((p, i) => (
+            <RevealItem key={p.num} className="proceso-step">
+              <div className="proceso-icon-cell">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={p.icon} alt="" className="service-icon" style={{ width: 64, height: 64, flexShrink: 0 }} />
                 {i < proceso.length - 1 && (
@@ -86,22 +64,17 @@ export default function Proceso() {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
-
-          <RevealGroup className="proceso-steps" style={{ display: "grid" }}>
-            {proceso.map((p) => (
-              <RevealItem key={p.num} className="proceso-step-copy">
+              <div className="proceso-step-copy">
                 <div style={{ fontFamily: "var(--font-serif)", fontSize: 20, fontWeight: 300, color: "var(--color-fg-faint)" }}>
                   {p.num}
                 </div>
                 <div style={{ width: 16, height: 1, background: "var(--color-border-heavy)", margin: "8px 0 12px" }} />
                 <div style={{ fontFamily: "var(--font-serif)", fontSize: 19, marginBottom: 8 }}>{p.title}</div>
                 <p style={{ fontSize: 12.5, lineHeight: 1.65, color: "var(--color-fg-muted)", margin: 0 }}>{p.body}</p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
       </div>
     </section>
   );

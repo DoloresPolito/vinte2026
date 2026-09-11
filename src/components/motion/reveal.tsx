@@ -3,13 +3,15 @@
 import type { CSSProperties, ReactNode } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+// A gentle spring for the lift (no hard snap at the end) paired with a slow, linear-ish fade.
+const SOFT_Y_SPRING = { type: "spring", stiffness: 42, damping: 16, mass: 1 } as const;
+const SOFT_FADE = { duration: 1.3, ease: [0.4, 0, 0.2, 1] } as const;
 
 /** Fades and lifts children in once they enter the viewport. */
 export function Reveal({
   children,
   delay = 0,
-  y = 20,
+  y = 26,
   className,
   style,
   as = "div",
@@ -31,7 +33,10 @@ export function Reveal({
       initial={reduced ? undefined : { opacity: 0, y }}
       whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
+      transition={{
+        y: { ...SOFT_Y_SPRING, delay },
+        opacity: { ...SOFT_FADE, delay },
+      }}
     >
       {children}
     </Tag>
@@ -41,13 +46,17 @@ export function Reveal({
 const groupVariants: Variants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.04 },
+    transition: { staggerChildren: 0.16, delayChildren: 0.1 },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { y: SOFT_Y_SPRING, opacity: SOFT_FADE },
+  },
 };
 
 /** Wrap a list/grid; each RevealItem child staggers in as the group enters view. */

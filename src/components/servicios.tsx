@@ -1,52 +1,26 @@
 "use client";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { useLanguage } from "@/lib/i18n/language-context";
 
-const servicios = [
-  {
-    num: "01",
-    title: "Diseño web",
-    body: "Sitios y landings diseñadas desde cero: arquitectura, contenido y interfaz.",
-    icon: "/icons/services/diseno-web.svg",
-  },
-  {
-    num: "02",
-    title: "Implementación",
-    body: "Llevamos el diseño a producción, propio o de tu equipo, con código limpio.",
-    icon: "/icons/services/implementacion.svg",
-  },
-  {
-    num: "03",
-    title: "Dashboards y plataformas",
-    body: "Paneles internos, tablas densas, flujos con datos reales y estados de carga.",
-    icon: "/icons/services/dashboards.svg",
-  },
-  {
-    num: "04",
-    title: "Sistemas de diseño",
-    body: "Componentes documentados para que el producto crezca sin perder consistencia.",
-    icon: "/icons/services/sistemas-de-diseno.svg",
-  },
-  {
-    num: "05",
-    title: "Performance y SEO técnico",
-    body: "Core Web Vitals, accesibilidad y métricas medibles antes y después.",
-    icon: "/icons/services/performance.svg",
-  },
-  {
-    num: "06",
-    title: "Mantenimiento",
-    body: "Soporte mensual, mejoras continuas y monitoreo del sitio en producción.",
-    icon: "/icons/services/mantenimiento.svg",
-  },
+const icons = [
+  "/icons/services/diseno-web.svg",
+  "/icons/services/implementacion.svg",
+  "/icons/services/dashboards.svg",
+  "/icons/services/sistemas-de-diseno.svg",
+  "/icons/services/performance.svg",
+  "/icons/services/mantenimiento.svg",
 ];
 
 export default function Servicios() {
+  const { t } = useLanguage();
+  const servicios = t.servicios.items.map((s, i) => ({ ...s, icon: icons[i] }));
+
   return (
     <section id="servicios" className="section-xl" style={{ borderBottom: "1px solid var(--color-border)" }}>
       <div className="servicios-intro" style={{ display: "grid", alignItems: "end", marginBottom: 72 }}>
         <Reveal>
-          <div className="eyebrow" style={{ marginBottom: 26 }}>01 · Servicios</div>
+          <div className="eyebrow" style={{ marginBottom: 26 }}>{t.servicios.eyebrow}</div>
           <h2
             className="heading-46"
             style={{
@@ -58,13 +32,14 @@ export default function Servicios() {
               maxWidth: 660,
             }}
           >
-            Diseño, implementación y <em style={{ color: "var(--color-accent)" }}>sistemas</em> para
-            productos digitales.
+            {t.servicios.titlePre}
+            <em style={{ color: "var(--color-accent)" }}>{t.servicios.titleEm}</em>
+            {t.servicios.titlePost}
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p style={{ fontSize: 14.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: 0 }}>
-            Trabajamos de punta a punta o nos integramos a tu equipo en la etapa donde más falta hace.
+            {t.servicios.intro}
           </p>
         </Reveal>
       </div>

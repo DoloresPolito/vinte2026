@@ -1,6 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
+import { Magnetic } from "@/components/motion/magnetic";
+import { ParallaxImage } from "@/components/motion/parallax";
+import { useLanguage } from "@/lib/i18n/language-context";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -16,89 +19,88 @@ const item: Variants = {
 
 export default function Hero() {
   const reduced = useReducedMotion();
+  const { t } = useLanguage();
 
   return (
-    <section
-      className="hero-section"
-      style={{
-        display: "grid",
-        borderBottom: "1px solid var(--color-border)",
-        backgroundImage:
-          "linear-gradient(105deg, rgba(245,243,237,0.96) 0%, rgba(245,243,237,0.8) 32%, rgba(245,243,237,0.35) 55%, rgba(245,243,237,0) 74%), url(/icons/hero.png)",
-        backgroundSize: "100% 100%, cover",
-        backgroundPosition: "left, center",
-        backgroundRepeat: "no-repeat, no-repeat",
-      }}
-    >
-      <motion.div
-        className="hero-copy"
-        style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}
-        variants={reduced ? undefined : container}
-        initial={reduced ? undefined : "hidden"}
-        animate={reduced ? undefined : "show"}
-      >
-        <div>
-          <motion.div className="eyebrow" style={{ marginBottom: "clamp(16px, 4vh, 40px)" }} variants={item}>
-            Estudio de diseño e implementación web
-          </motion.div>
-          <motion.h1
-            className="hero-title"
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontWeight: 300,
-              lineHeight: 1.02,
-              letterSpacing: "-0.02em",
-              margin: "0 0 clamp(16px, 3vh, 34px)",
-              textWrap: "pretty",
-            }}
-            variants={item}
-          >
-            Diseñamos e<br />
-            implementamos<br />
-            productos web<br />
-            <em style={{ color: "var(--color-accent)" }}>que funcionan.</em>
-          </motion.h1>
-          <motion.div
-            style={{ width: 56, height: 1, background: "var(--color-border-heavy)", marginBottom: "clamp(14px, 3vh, 28px)" }}
-            variants={item}
-          />
-          <motion.p
-            style={{ maxWidth: 430, fontSize: 15.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: "0 0 clamp(20px, 4vh, 44px)" }}
-            variants={item}
-          >
-            Desde el diseño de la interfaz hasta la puesta en producción: sitios, plataformas y dashboards
-            construidos con criterio técnico y atención al detalle.
-          </motion.p>
-          <motion.div style={{ display: "flex", gap: 14, flexWrap: "wrap" }} variants={item}>
-            <a href="#proyectos" className="btn btn-accent">
-              Ver proyectos
-              <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
-                <path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <a href="#servicios" className="btn btn-outline">
-              Qué hacemos
-            </a>
-          </motion.div>
-        </div>
+    <section className="hero-section" style={{ borderBottom: "1px solid var(--color-border)" }}>
+      <div className="hero-sticky">
+        <ParallaxImage
+          src="/icons/hero.png"
+          gradient="linear-gradient(105deg, rgba(245,243,237,0.96) 0%, rgba(245,243,237,0.8) 32%, rgba(245,243,237,0.35) 55%, rgba(245,243,237,0) 74%)"
+        />
         <motion.div
-          className="hero-scroll-indicator"
-          style={{ display: "flex", alignItems: "flex-end", gap: 16, marginTop: "clamp(20px, 5vh, 64px)", fontSize: 10.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-fg-label)" }}
-          variants={item}
+          className="hero-copy"
+          style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}
+          variants={reduced ? undefined : container}
+          initial={reduced ? undefined : "hidden"}
+          animate={reduced ? undefined : "show"}
         >
-          <motion.svg
-            width="14"
-            height="40"
-            viewBox="0 0 14 40"
-            fill="none"
-            animate={reduced ? undefined : { y: [0, 5, 0] }}
-            transition={reduced ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          <div>
+            <motion.div className="eyebrow" style={{ marginBottom: "clamp(16px, 4vh, 40px)" }} variants={item}>
+              {t.hero.eyebrow}
+            </motion.div>
+            <motion.h1
+              className="hero-title"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontWeight: 300,
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
+                margin: "0 0 clamp(16px, 3vh, 34px)",
+                textWrap: "pretty",
+              }}
+              variants={item}
+            >
+              {t.hero.titleLine1}<br />
+              {t.hero.titleLine2}<br />
+              {t.hero.titleLine3}<br />
+              <em style={{ color: "var(--color-accent)" }}>{t.hero.titleEm}</em>
+            </motion.h1>
+            <motion.div
+              style={{ width: 56, height: 1, background: "var(--color-border-heavy)", marginBottom: "clamp(14px, 3vh, 28px)" }}
+              variants={item}
+            />
+            <motion.p
+              style={{ maxWidth: 430, fontSize: 15.5, lineHeight: 1.75, color: "var(--color-fg-muted)", margin: "0 0 clamp(20px, 4vh, 44px)" }}
+              variants={item}
+            >
+              {t.hero.body}
+            </motion.p>
+            <motion.div style={{ display: "flex", gap: 14, flexWrap: "wrap" }} variants={item}>
+              <Magnetic>
+                <a href="#proyectos" className="btn btn-accent">
+                  {t.hero.ctaProjects}
+                  <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
+                    <path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a href="#servicios" className="btn btn-outline">
+                  {t.hero.ctaServices}
+                </a>
+              </Magnetic>
+            </motion.div>
+          </div>
+          <motion.div
+            className="hero-scroll-indicator"
+            style={{ display: "flex", alignItems: "flex-end", gap: 16, marginTop: "clamp(20px, 5vh, 64px)", fontSize: 10.5, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-fg-label)" }}
+            variants={item}
           >
-            <path d="M7 0v34M1 28l6 6 6-6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-          </motion.svg>
-          <span style={{ paddingBottom: 4 }}>Scroll</span>
+            <motion.svg
+              width="14"
+              height="40"
+              viewBox="0 0 14 40"
+              fill="none"
+              animate={reduced ? undefined : { y: [0, 5, 0] }}
+              transition={reduced ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <path d="M7 0v34M1 28l6 6 6-6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+            </motion.svg>
+            <span style={{ paddingBottom: 4 }}>{t.hero.scroll}</span>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
