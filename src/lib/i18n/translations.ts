@@ -148,7 +148,9 @@ const es = {
     emailLabel: "Escribinos a",
     emailPlaceholder: "tu@email.com",
     submit: "Enviar",
-    mailSubject: "Brief desde la web",
+    sending: "Enviando...",
+    success: "¡Listo! Te vamos a responder pronto.",
+    error: "Algo salió mal. Probá de nuevo o escribinos a info@vintestudio.com.",
   },
 
   clientes: {
@@ -348,7 +350,9 @@ const en = {
     emailLabel: "Reach us at",
     emailPlaceholder: "you@email.com",
     submit: "Send",
-    mailSubject: "Brief from the website",
+    sending: "Sending...",
+    success: "Done! We'll get back to you soon.",
+    error: "Something went wrong. Try again or email us at info@vintestudio.com.",
   },
 
   clientes: {

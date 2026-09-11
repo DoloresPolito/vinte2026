@@ -1,14 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { motion, useReducedMotion, type Variants } from "motion/react";
+import { Reveal } from "@/components/motion/reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
+
+const listVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+
+const listItemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 42, damping: 16, mass: 1 },
+  },
+};
 
 type FilterKey = "all" | "web" | "platforms" | "dashboards";
 
 export default function Proyectos() {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<FilterKey>("all");
+  const reduced = useReducedMotion();
 
   const filters: { key: FilterKey; label: string }[] = [
     { key: "all", label: t.proyectos.filters.all },
@@ -64,9 +80,15 @@ export default function Proyectos() {
         </div>
       </Reveal>
 
-      <RevealGroup className="proyectos-list">
+      <motion.div
+        key={filter}
+        className="proyectos-list"
+        variants={reduced ? undefined : listVariants}
+        initial={reduced ? undefined : "hidden"}
+        animate={reduced ? undefined : "show"}
+      >
         {items.map((p, i) => (
-          <RevealItem key={p.slug} className="proyecto-item">
+          <motion.div key={p.slug} className="proyecto-item" variants={reduced ? undefined : listItemVariants}>
             <div className="proyecto-num">{String(i + 1).padStart(2, "0")}</div>
             <div className="proyecto-item-row">
               <div className="proyecto-media" aria-hidden="true">
@@ -84,10 +106,10 @@ export default function Proyectos() {
                 </a>
               </div>
             </div>
-          </RevealItem>
+          </motion.div>
         ))}
         {items.length === 0 && <p className="proyectos-empty">{t.proyectos.emptyState}</p>}
-      </RevealGroup>
+      </motion.div>
     </section>
   );
 }

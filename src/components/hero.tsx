@@ -27,6 +27,7 @@ export default function Hero() {
         <ParallaxImage
           src="/icons/hero.png"
           gradient="linear-gradient(105deg, rgba(245,243,237,0.96) 0%, rgba(245,243,237,0.8) 32%, rgba(245,243,237,0.35) 55%, rgba(245,243,237,0) 74%)"
+          kenBurns
         />
         <motion.div
           className="hero-copy"

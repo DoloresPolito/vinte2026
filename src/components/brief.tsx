@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
+import { sendBrief } from "@/lib/actions/send-brief";
 
 function BriefSelect({
   value,
@@ -89,12 +90,19 @@ export default function Brief() {
   const [object, setObject] = useState(t.brief.objects[0]);
   const [timing, setTiming] = useState(t.brief.timing[0]);
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("sending");
     const sentence = `${t.brief.intro} ${verb} ${object} ${timing}.`;
-    const body = `${sentence}\n\n${t.brief.emailLabel}: ${email}`;
-    window.location.href = `mailto:hola@vintestudio.com?subject=${encodeURIComponent(t.brief.mailSubject)}&body=${encodeURIComponent(body)}`;
+    const result = await sendBrief({ sentence, email });
+    if (result.ok) {
+      setStatus("success");
+      setEmail("");
+    } else {
+      setStatus("error");
+    }
   };
 
   return (
@@ -112,6 +120,7 @@ export default function Brief() {
             <span>{t.brief.intro}</span>
             <BriefSelect value={verb} onChange={setVerb} options={t.brief.verbs} />
             <BriefSelect value={object} onChange={setObject} options={t.brief.objects} />
+            <span className="brief-linebreak" aria-hidden="true" />
             <BriefSelect value={timing} onChange={setTiming} options={t.brief.timing} />
             <span>.</span>
           </p>
@@ -128,13 +137,15 @@ export default function Brief() {
             <span>.</span>
           </p>
           <Magnetic>
-            <button type="submit" className="btn btn-accent">
-              {t.brief.submit}
+            <button type="submit" className="btn btn-accent" disabled={status === "sending"}>
+              {status === "sending" ? t.brief.sending : t.brief.submit}
               <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
                 <path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </Magnetic>
+          {status === "success" && <p className="brief-status brief-status-success">{t.brief.success}</p>}
+          {status === "error" && <p className="brief-status brief-status-error">{t.brief.error}</p>}
         </form>
       </Reveal>
     </section>

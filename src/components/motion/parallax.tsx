@@ -8,10 +8,13 @@ export function ParallaxImage({
   src,
   gradient,
   range = 8,
+  kenBurns = false,
 }: {
   src: string;
   gradient?: string;
   range?: number;
+  /** Slow, looping zoom drift so the image feels alive even before the visitor scrolls. */
+  kenBurns?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -23,6 +26,8 @@ export function ParallaxImage({
       <motion.div
         className="parallax-bg-image"
         style={{ backgroundImage: `url(${src})`, y: reduced ? undefined : y }}
+        animate={reduced || !kenBurns ? undefined : { scale: [1, 1.08, 1] }}
+        transition={reduced || !kenBurns ? undefined : { duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
       {gradient && <div className="parallax-bg-gradient" style={{ backgroundImage: gradient }} />}
     </div>

@@ -32,7 +32,7 @@ export default function Contacto() {
             {t.contacto.body}
           </p>
           <a
-            href="mailto:hola@vintestudio.com"
+            href="mailto:info@vintestudio.com"
             className="contacto-email"
             style={{
               display: "flex",
@@ -45,7 +45,7 @@ export default function Contacto() {
               color: "var(--color-accent-fg)",
             }}
           >
-            hola@vintestudio.com
+            info@vintestudio.com
             <svg width="30" height="12" viewBox="0 0 30 12" fill="none">
               <path d="M0 6h27M23 1l5 5-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
