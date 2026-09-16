@@ -28,10 +28,9 @@ const es = {
 
   ticker: {
     items: [
-      "Tomando proyectos 2026",
+      "Tomando proyectos 2026/2027",
       "Diseño e implementación web",
       "Buenos Aires, Argentina",
-      "Respondemos en 48h",
     ],
   },
 
@@ -242,10 +241,9 @@ const en = {
 
   ticker: {
     items: [
-      "Taking on projects 2026",
+      "Taking on projects 2026/2027",
       "Web design & implementation",
       "Buenos Aires, Argentina",
-      "We reply within 48h",
     ],
   },
 

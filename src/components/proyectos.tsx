@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { Reveal } from "@/components/motion/reveal";
 import { useLanguage } from "@/lib/i18n/language-context";
+
+const projectImages: Record<string, string> = {
+  annika: "/images/projects/annika.jpeg",
+  "alejandro-polito": "/images/projects/cirugiaplastica.jpeg",
+  cerer: "/images/projects/cerer.jpeg",
+};
 
 const listVariants: Variants = {
   hidden: {},
@@ -92,7 +99,17 @@ export default function Proyectos() {
             <div className="proyecto-num">{String(i + 1).padStart(2, "0")}</div>
             <div className="proyecto-item-row">
               <div className="proyecto-media" aria-hidden="true">
-                <span className="proyecto-media-mark">{p.title.charAt(0)}</span>
+                {projectImages[p.slug] ? (
+                  <Image
+                    src={projectImages[p.slug]}
+                    alt=""
+                    fill
+                    sizes="(max-width: 760px) 100vw, 50vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : (
+                  <span className="proyecto-media-mark">{p.title.charAt(0)}</span>
+                )}
               </div>
               <div className="proyecto-info">
                 <div className="proyecto-sector">{p.sector}</div>
