@@ -976,10 +976,12 @@ h3 {
   background: rgba(245, 243, 237, 0.6);
 }
 
+/* max-content lets the label spill past .pg-bottom (sized to the resting column) into the wider open panel. */
 .pg-cta {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  width: max-content;
 }
 
 .pg-cta-circle {
@@ -995,10 +997,11 @@ h3 {
 }
 
 .pg-cta-label {
-  font-size: 11px;
+  font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
+  color: #fff;
   opacity: 0;
   transform: translateX(-6px);
   transition: opacity 0.4s ease, transform 0.6s var(--pg-ease);

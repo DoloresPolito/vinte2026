@@ -123,12 +123,6 @@ export default function ProyectosGaleria() {
           </h2>
         </div>
         <p className="pg-intro">{t.proyectos.intro}</p>
-        <div className="pg-actions">
-          <a href="#proyectos" className="pg-view-all">
-            {t.proyectos.viewAll}
-            <Arrow />
-          </a>
-        </div>
       </Reveal>
 
       <div className="pg-viewport" ref={viewportRef}>
