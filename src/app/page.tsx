@@ -2,7 +2,8 @@ import Header from "@/components/header";
 import Ticker from "@/components/ticker";
 import Hero from "@/components/hero";
 import Servicios from "@/components/servicios";
-import Proyectos from "@/components/proyectos";
+// La versión anterior sigue en "@/components/proyectos".
+import Proyectos from "@/components/proyectos-galeria";
 import Filosofia from "@/components/filosofia";
 import Clientes from "@/components/clientes";
 import Proceso from "@/components/proceso";
