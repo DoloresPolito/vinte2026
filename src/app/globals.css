@@ -371,8 +371,51 @@ h3 {
   color: rgba(240, 238, 228, 0.35);
 }
 
+/* Instagram */
+.header-social {
+  display: inline-flex;
+  padding: 4px;
+  margin-right: 10px;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
+}
+
+.header-social:hover {
+  color: var(--color-fg);
+}
+
+.mobile-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: rgba(240, 238, 228, 0.55);
+  transition: color 0.2s ease;
+}
+
+.mobile-social:hover {
+  color: var(--color-accent-fg);
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-light);
+  transition: color 0.2s ease;
+}
+
+.footer-social:hover {
+  color: var(--color-bg);
+}
+
 @media (max-width: 760px) {
   .site-header { padding: 16px 20px; }
+  .header-social { display: none; }
   .site-header-row { gap: 10px; }
   .site-nav { display: none; }
   .menu-toggle { display: flex; }

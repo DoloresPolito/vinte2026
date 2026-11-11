@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useLenis } from "lenis/react";
 import { Magnetic } from "@/components/motion/magnetic";
+import { InstagramIcon, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/instagram";
 import { useLanguage } from "@/lib/i18n/language-context";
 import type { Locale } from "@/lib/i18n/translations";
 
@@ -96,6 +97,16 @@ export default function Header() {
         </nav>
 
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-social"
+            aria-label={`Instagram @${INSTAGRAM_HANDLE}`}
+            title={`@${INSTAGRAM_HANDLE}`}
+          >
+            <InstagramIcon size={20} />
+          </a>
           <LanguageToggle lang={lang} setLang={setLang} className="lang-toggle-desktop" />
           <Magnetic>
             <a href="#contacto" className="btn btn-invert btn-sm">
@@ -146,6 +157,16 @@ export default function Header() {
                   <motion.div variants={linkItem} style={{ marginTop: 18 }}>
                     <LanguageToggle lang={lang} setLang={setLang} className="lang-toggle-mobile" />
                   </motion.div>
+                  <motion.a
+                    variants={linkItem}
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mobile-social"
+                  >
+                    <InstagramIcon size={16} />
+                    @{INSTAGRAM_HANDLE}
+                  </motion.a>
                 </motion.nav>
               </motion.div>
             )}

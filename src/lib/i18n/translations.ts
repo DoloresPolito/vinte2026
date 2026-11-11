@@ -92,6 +92,15 @@ const es = {
     emptyState: "Pronto vamos a sumar proyectos en esta categoría.",
     items: [
       {
+        slug: "golf",
+        category: "web",
+        sector: "Deportes",
+        tagline: "Naturaleza y deporte",
+        title: "Golf Country Club",
+        description: "Gualeguaychú Country Club: golf, deportes y vida al aire libre.",
+        url: "https://www.gualeguaychucountryclub.com/",
+      },
+      {
         slug: "annika",
         category: "web",
         sector: "Domótica",
@@ -355,6 +364,15 @@ const en = {
     next: "Next projects",
     emptyState: "More projects in this category are coming soon.",
     items: [
+      {
+        slug: "golf",
+        category: "web",
+        sector: "Sports",
+        tagline: "Nature & sport",
+        title: "Golf Country Club",
+        description: "Gualeguaychú Country Club: golf, sports and outdoor living.",
+        url: "https://www.gualeguaychucountryclub.com/",
+      },
       {
         slug: "annika",
         category: "web",

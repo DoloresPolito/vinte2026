@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/language-context";
+import { InstagramIcon, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/instagram";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -25,6 +26,10 @@ export default function Footer() {
         <span style={{ fontWeight: 500, color: "var(--color-bg)" }}>VINTE</span>
         <span style={{ fontWeight: 300 }}>STUDIO</span>
       </div>
+      <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-social">
+        <InstagramIcon size={14} />
+        @{INSTAGRAM_HANDLE}
+      </a>
       <div>{t.footer.copy}</div>
     </footer>
   );

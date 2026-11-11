@@ -12,6 +12,11 @@ import { useLanguage } from "@/lib/i18n/language-context";
 type ProjectAssets = { closed?: string; open?: string; logo?: string };
 
 const projectAssets: Record<string, ProjectAssets> = {
+  golf: {
+    closed: "/images/newproyects/golf/close.png",
+    open: "/images/newproyects/golf/open.png",
+    logo: "/images/newproyects/golf/logo.svg",
+  },
   annika: {
     closed: "/images/newproyects/annika/close.jpeg",
     open: "/images/newproyects/annika/open.jpeg",
